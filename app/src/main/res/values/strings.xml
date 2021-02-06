@@ -1,3 +1,7 @@
 <resources>
-    <string name="app_name">DailyMissions</string>
+    <string name="app_name">Daily Missions</string>
+    <string name="username_hint">Username</string>
+    <string name="log_in_text">Log in</string>
+    <string name="noAccount_text">Don\'t have an account?</string>
+    <string name="register_text">Register</string>
 </resources>
