@@ -13,10 +13,11 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        findViewById<Button>(R.id.loginButton).setOnClickListener {
+        findViewById<Button>(R.id.registerButton).setOnClickListener {
 
-            if (findViewById<EditText>(R.id.loginUsernameInput).text.trim().isNotEmpty() &&
-                findViewById<EditText>(R.id.loginPasswordInput).text.trim().isNotEmpty()){
+            if (findViewById<EditText>(R.id.registerUsernameInput).text.trim().isNotEmpty() &&
+                findViewById<EditText>(R.id.registerPasswordInput).text.trim().isNotEmpty()
+            ){
 
                 val intent = Intent(this, MissionsActivity::class.java)
                 startActivity(intent)

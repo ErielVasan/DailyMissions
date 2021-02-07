@@ -1,8 +1,9 @@
 <resources>
     <string name="app_name">Daily Missions</string>
     <string name="username_hint">Username</string>
-    <string name="log_in_text">Login</string>
+    <string name="login_text">Login</string>
     <string name="noAccount_text">Don\'t have an account?</string>
     <string name="register_text">Register</string>
     <string name="password_hint">Password</string>
+    <string name="password_confirm">Confirm Password</string>
 </resources>
