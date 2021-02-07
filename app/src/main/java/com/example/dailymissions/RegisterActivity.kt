@@ -41,13 +41,13 @@ class RegisterActivity : AppCompatActivity() {
 
                 } else {
 
-                    Toast.makeText(this, "Passwords don't match", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Passwords don't match, please retry", Toast.LENGTH_SHORT).show()
 
                 }
 
             } else {
 
-                Toast.makeText(this, "Input Missing", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Invalid information, please retry", Toast.LENGTH_SHORT).show()
 
             }
         }
@@ -66,7 +66,7 @@ class RegisterActivity : AppCompatActivity() {
         auth.createUserWithEmailAndPassword(emailInput, passwordInput)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
-                    Toast.makeText(this, "Registration Successful", Toast.LENGTH_LONG).show()
+                    Toast.makeText(this, "Registration Successful!", Toast.LENGTH_LONG).show()
                     val intent = Intent(this, WelcomeActivity::class.java)
                     startActivity(intent)
                     finish()
@@ -75,10 +75,10 @@ class RegisterActivity : AppCompatActivity() {
                         throw task.exception!!
                     }
                     catch(e: FirebaseAuthInvalidCredentialsException) {
-                        Toast.makeText(this, "There is something wrong with your information, please try again.", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this, "Invalid information, please retry", Toast.LENGTH_SHORT).show()
 
                     }catch (e: FirebaseAuthUserCollisionException){
-                        Toast.makeText(this, "Account already exists, please log in.", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this, "Account already exists, please login", Toast.LENGTH_SHORT).show()
                     }
                     catch (e: Exception) {
                         Toast.makeText(this, "Unknown Registration Failure", Toast.LENGTH_SHORT).show()
