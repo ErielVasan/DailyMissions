@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "326644763139",
+    "project_id": "dailymissions-4f4e7",
+    "storage_bucket": "dailymissions-4f4e7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:326644763139:android:194363d6c7d7a9e6f6dc36",
+        "android_client_info": {
+          "package_name": "com.example.dailymissions"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "326644763139-up0c8j5p91ol53vjaqdnub05hbbkefmh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAViNzL_6o5_qdnLKAHdBPOoaF_U4MZ8Rk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "326644763139-up0c8j5p91ol53vjaqdnub05hbbkefmh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

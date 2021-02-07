@@ -16,7 +16,7 @@ class LoginActivity : AppCompatActivity() {
 
         findViewById<Button>(R.id.loginButton).setOnClickListener {
 
-            if (findViewById<EditText>(R.id.loginUsernameInput).text.trim().isNotEmpty() &&
+            if (findViewById<EditText>(R.id.loginEmailInput).text.trim().isNotEmpty() &&
                 findViewById<EditText>(R.id.loginPasswordInput).text.trim().isNotEmpty()
             ){
 
