@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 
 
@@ -13,10 +14,10 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        findViewById<Button>(R.id.registerButton).setOnClickListener {
+        findViewById<Button>(R.id.loginButton).setOnClickListener {
 
-            if (findViewById<EditText>(R.id.registerUsernameInput).text.trim().isNotEmpty() &&
-                findViewById<EditText>(R.id.registerPasswordInput).text.trim().isNotEmpty()
+            if (findViewById<EditText>(R.id.loginUsernameInput).text.trim().isNotEmpty() &&
+                findViewById<EditText>(R.id.loginPasswordInput).text.trim().isNotEmpty()
             ){
 
                 val intent = Intent(this, MissionsActivity::class.java)
@@ -28,6 +29,14 @@ class LoginActivity : AppCompatActivity() {
                 Toast.makeText(this, "Input Missing", Toast.LENGTH_SHORT).show()
 
             }
+
+        }
+
+        findViewById<TextView>(R.id.toRegisterTextView).setOnClickListener{
+
+            val intent = Intent(this, RegisterActivity::class.java)
+            startActivity(intent)
+            finish()
 
         }
 
