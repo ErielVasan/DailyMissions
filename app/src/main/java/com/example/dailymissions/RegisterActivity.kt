@@ -8,6 +8,10 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
+import android.util.Log
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
+import com.google.firebase.auth.FirebaseAuthUserCollisionException
+
 
 class RegisterActivity : AppCompatActivity() {
 
@@ -57,17 +61,29 @@ class RegisterActivity : AppCompatActivity() {
         }
     }
 
-    fun registerUser(){ //  TODO: catch exceptions
+    private fun registerUser() {
+
         auth.createUserWithEmailAndPassword(emailInput, passwordInput)
-            .addOnCompleteListener(this){
-                task ->
-                if(task.isSuccessful){
-                    Toast.makeText(this, "Registration Complete", Toast.LENGTH_LONG).show()
+            .addOnCompleteListener(this) { task ->
+                if (task.isSuccessful) {
+                    Toast.makeText(this, "Registration Successful", Toast.LENGTH_LONG).show()
                     val intent = Intent(this, WelcomeActivity::class.java)
                     startActivity(intent)
                     finish()
-                }else{
-                    Toast.makeText(this, "Registration Failed", Toast.LENGTH_SHORT).show()
+                } else {
+                    try {
+                        throw task.exception!!
+                    }
+                    catch(e: FirebaseAuthInvalidCredentialsException) {
+                        Toast.makeText(this, "There is something wrong with your information, please try again.", Toast.LENGTH_SHORT).show()
+
+                    }catch (e: FirebaseAuthUserCollisionException){
+                        Toast.makeText(this, "Account already exists, please log in.", Toast.LENGTH_SHORT).show()
+                    }
+                    catch (e: Exception) {
+                        Toast.makeText(this, "Unknown Registration Failure", Toast.LENGTH_SHORT).show()
+                        Log.e("TAG", e.toString())
+                    }
                 }
             }
     }
