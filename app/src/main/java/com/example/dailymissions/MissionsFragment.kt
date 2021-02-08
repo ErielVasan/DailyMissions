@@ -56,7 +56,7 @@ class MissionsFragment : Fragment() {
         }
 
         override fun getCount(): Int {
-            return 5
+            return 7
         }
     }
 
