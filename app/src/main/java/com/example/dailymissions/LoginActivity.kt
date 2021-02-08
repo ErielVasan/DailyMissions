@@ -41,6 +41,14 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
+    override fun onBackPressed() {
+        super.onBackPressed()
+
+        val intent = Intent(this, WelcomeActivity::class.java)
+        startActivity(intent)
+        finish()
+    }
+
     private fun signInUser() {
 
         firebaseAuth.signInWithEmailAndPassword(emailInput, passwordInput)

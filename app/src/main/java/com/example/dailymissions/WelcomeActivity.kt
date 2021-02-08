@@ -13,11 +13,13 @@ class WelcomeActivity : AppCompatActivity() {
         findViewById<Button>(R.id.toLoginButton).setOnClickListener {
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
+            finish()
         }
 
         findViewById<Button>(R.id.toRegisterButton).setOnClickListener {
             val intent = Intent(this, RegisterActivity::class.java)
             startActivity(intent)
+            finish()
         }
     }
 }

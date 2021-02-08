@@ -1,9 +1,10 @@
 package com.example.dailymissions
 
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Intent
 import android.os.Bundle
-import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
+
 
 class MissionsActivity : AppCompatActivity() {
 
@@ -16,8 +17,10 @@ class MissionsActivity : AppCompatActivity() {
 
     override fun onBackPressed() {
         super.onBackPressed()
-        firebaseAuth.signOut()
-        Toast.makeText(this, "You are signed out!", Toast.LENGTH_LONG).show()
+        val intent = Intent()
+        intent.action = Intent.ACTION_MAIN
+        intent.addCategory(Intent.CATEGORY_HOME)
+        startActivity(intent)
 
     }
 }
