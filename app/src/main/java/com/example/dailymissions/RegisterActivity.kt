@@ -15,7 +15,7 @@ import com.google.firebase.auth.FirebaseAuthUserCollisionException
 
 class RegisterActivity : AppCompatActivity() {
 
-    private lateinit var auth: FirebaseAuth
+    private val firebaseAuth = FirebaseAuth.getInstance()
     private lateinit var emailInput: String
     private lateinit var passwordInput: String
     private lateinit var passwordConfirmInput: String
@@ -23,9 +23,6 @@ class RegisterActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
-
-        auth = FirebaseAuth.getInstance()
-
 
         findViewById<Button>(R.id.registerButton).setOnClickListener {
 
@@ -36,19 +33,12 @@ class RegisterActivity : AppCompatActivity() {
             if (emailInput.isNotEmpty() && passwordInput.isNotEmpty() && passwordConfirmInput.isNotEmpty()) {
 
                 if (passwordInput == passwordConfirmInput){
-
                     registerUser()
-
                 } else {
-
                     Toast.makeText(this, "Passwords don't match, please retry", Toast.LENGTH_SHORT).show()
-
                 }
-
             } else {
-
                 Toast.makeText(this, "Invalid information, please retry", Toast.LENGTH_SHORT).show()
-
             }
         }
 
@@ -63,7 +53,7 @@ class RegisterActivity : AppCompatActivity() {
 
     private fun registerUser() {
 
-        auth.createUserWithEmailAndPassword(emailInput, passwordInput)
+        firebaseAuth.createUserWithEmailAndPassword(emailInput, passwordInput)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
                     Toast.makeText(this, "Registration Successful!", Toast.LENGTH_LONG).show()
