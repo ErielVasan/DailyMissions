@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AddMissionActivity">
+
+    <EditText
+        android:id="@+id/addMissionNameTextField"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="64dp"
+        android:ems="10"
+        android:hint="Mission Name"
+        android:inputType="textPersonName"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/addMissionTitleTextView" />
+
+    <Button
+        android:id="@+id/addBackButton"
+        android:layout_width="106dp"
+        android:layout_height="44dp"
+        android:layout_marginStart="52dp"
+        android:layout_marginLeft="52dp"
+        android:layout_marginTop="112dp"
+        android:layout_marginEnd="95dp"
+        android:layout_marginRight="95dp"
+        android:text="Back"
+        app:layout_constraintEnd_toStartOf="@+id/addButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/addSetReminderButton" />
+
+    <Button
+        android:id="@+id/addButton"
+        android:layout_width="106dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="112dp"
+        android:layout_marginEnd="52dp"
+        android:layout_marginRight="52dp"
+        android:text="Add"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/addBackButton"
+        app:layout_constraintTop_toBottomOf="@+id/addNotificationCheckBox" />
+
+    <TextView
+        android:id="@+id/addDeadlineTextView"
+        android:layout_width="250dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="64dp"
+        android:gravity="center"
+        android:text="Mission Deadline"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/addMissionNameTextField" />
+
+    <Button
+        android:id="@+id/addSetReminderButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="88dp"
+        android:layout_marginLeft="88dp"
+        android:layout_marginTop="48dp"
+        android:text="Set Reminder"
+        app:layout_constraintEnd_toStartOf="@+id/addNotificationCheckBox"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/addDeadlineTextView" />
+
+    <TextView
+        android:id="@+id/addMissionTitleTextView"
+        android:layout_width="376dp"
+        android:layout_height="43dp"
+        android:layout_marginTop="140dp"
+        android:gravity="center"
+        android:text="Create New Mission"
+        android:textColor="#000000"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.542"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <CheckBox
+        android:id="@+id/addNotificationCheckBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        android:layout_marginEnd="88dp"
+        android:layout_marginRight="88dp"
+        android:text="Notify Me"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/addSetReminderButton"
+        app:layout_constraintTop_toBottomOf="@+id/addDeadlineTextView" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
