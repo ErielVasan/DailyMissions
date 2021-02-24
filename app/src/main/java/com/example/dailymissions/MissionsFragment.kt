@@ -20,6 +20,7 @@ var missionItems = arrayListOf<MissionItem>()
 var pos: Int = -1
 
 class MissionsFragment : Fragment() {
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val listView = view.findViewById<ListView>(R.id.missionsListView)
@@ -38,7 +39,9 @@ class MissionsFragment : Fragment() {
 
         //Plain Click on Item
         listView.setOnItemClickListener { parent, view, position, id ->
-            Toast.makeText(appContext, missionItems[position].missionName, Toast.LENGTH_SHORT).show()
+            val editFragment = EditMissionFragment()
+            pos = position
+            editFragment.show(this.childFragmentManager, "editFragment")
         }
     }
 
@@ -47,6 +50,7 @@ class MissionsFragment : Fragment() {
         private val mContext: Context = context
 
 
+        @RequiresApi(Build.VERSION_CODES.O)
         override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
             val layoutInflater = LayoutInflater.from(mContext)
             val missionItem = layoutInflater.inflate(R.layout.mission_item, parent, false)
@@ -54,7 +58,17 @@ class MissionsFragment : Fragment() {
             var missionTitle = missionItem.findViewById<TextView>(R.id.missionTitleTextView)
             var deadline = missionItem.findViewById<TextView>(R.id.deadlineTextView)
             missionTitle.text = missionItems[position].missionName
-            deadline.text = missionItems[position].deadline.toString()
+            var deadlineDateTime =  missionItems[position].deadline
+
+            var timeColumn = ":"
+            if (deadlineDateTime.minute < 10){
+                timeColumn = ":0"
+            }
+
+            deadline.text = deadlineDateTime.hour.toString() + timeColumn +
+                    deadlineDateTime.minute.toString() + "  " +
+                    deadlineDateTime.dayOfMonth.toString() + "/" +
+                    deadlineDateTime.month.value.toString() + "/" + deadlineDateTime.year.toString()
 
             if (!missionItems[position].isReminder) {
                 missionItem.setBackgroundColor(Color.parseColor("#FFFFFF"))
@@ -84,11 +98,6 @@ class MissionsFragment : Fragment() {
     ): View? {
 
         return inflater.inflate(R.layout.fragment_missions, container, false)
-    }
-
-    override fun onResume() {
-        super.onResume()
-
     }
 
 }

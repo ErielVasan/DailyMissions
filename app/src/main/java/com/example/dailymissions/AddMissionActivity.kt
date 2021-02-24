@@ -87,7 +87,12 @@ class AddMissionActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListen
         savedHour = hourOfDay
         savedMinute = minute
 
-        findViewById<TextView>(R.id.addDeadlineTextView).setText("$savedHour:$savedMinute  $savedDay/$savedMonth/$savedYear")
+        var timeColumn = ":"
+        if (savedMinute < 10){
+            timeColumn = ":0"
+        }
+
+        findViewById<TextView>(R.id.addDeadlineTextView).setText("$savedHour$timeColumn$savedMinute $savedDay/$savedMonth/$savedYear")
         localDateTime = LocalDateTime.of(savedYear, savedMonth, savedDay, savedHour, savedMinute)
 
     }

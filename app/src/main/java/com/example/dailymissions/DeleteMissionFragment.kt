@@ -16,7 +16,7 @@ open class DeleteMissionFragment : DialogFragment()  {
         savedInstanceState: Bundle?
     ): View? {
 
-        var rootview: View = inflater.inflate(R.layout.fragment_delete_mission, container, false)
+        val rootview: View = inflater.inflate(R.layout.fragment_delete_mission, container, false)
 
         rootview.findViewById<Button>(R.id.deleteBackButton).setOnClickListener {
             dismiss()
@@ -24,7 +24,7 @@ open class DeleteMissionFragment : DialogFragment()  {
 
         rootview.findViewById<Button>(R.id.abandonButton).setOnClickListener {
             missionItems.removeAt(pos)
-            var listView = this.activity?.findViewById<ListView>(R.id.missionsListView)
+            val listView = this.activity?.findViewById<ListView>(R.id.missionsListView)
             (listView?.adapter as MissionsFragment.MissionsAdapter).notifyDataSetChanged()
             dismiss()
 
