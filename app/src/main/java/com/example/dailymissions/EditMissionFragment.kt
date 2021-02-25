@@ -68,7 +68,7 @@ class EditMissionFragment : DialogFragment(), DatePickerDialog.OnDateSetListener
             missionItems[pos].missionName = rootview.findViewById<EditText>(R.id.editMissionNameTextField).text.toString()
             missionItems[pos].isReminder = rootview.findViewById<CheckBox>(R.id.editNotificationCheckBox).isChecked
 
-            
+            db.collection("reminders").document(missionItems[pos].id).update("reminder", missionItems[pos].toString())
 
             missionItems.sortBy { it.deadline }
             val listView = this.activity?.findViewById<ListView>(R.id.missionsListView)

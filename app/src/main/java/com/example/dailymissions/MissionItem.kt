@@ -10,6 +10,7 @@ class MissionItem(_isReminder: Boolean, _deadline: LocalDateTime, _missionName: 
     var deadline: LocalDateTime = _deadline
     var missionName: String = _missionName
     var iscompleted: Boolean = false
+    var id : String = ""
 
     override fun toString(): String {
         var stringedObject = ""

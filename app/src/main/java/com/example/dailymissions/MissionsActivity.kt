@@ -37,6 +37,7 @@ class MissionsActivity : AppCompatActivity() {
                     if (document.data["user"].toString() == firebaseUser){
                         val missionItem = MissionItem(false, LocalDateTime.now(), "")
                         missionItem.unpack(document.data["reminder"].toString())
+                        missionItem.id = document.id
                         missionItems.add(missionItem)
                         missionItems.sortBy { it.deadline }
                     }
