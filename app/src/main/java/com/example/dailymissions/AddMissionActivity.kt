@@ -8,10 +8,14 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.*
 import androidx.annotation.RequiresApi
+import com.google.firebase.auth.FirebaseAuth
 import java.time.LocalDateTime
 import java.util.*
 
 class AddMissionActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListener {
+
+    val firebaseAuth = FirebaseAuth.getInstance()
+    val firebaseUser = firebaseAuth.currentUser?.email.toString()
 
     var day = 0
     var month = 0
@@ -56,6 +60,12 @@ class AddMissionActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListen
             missionItems.add(addedMission)
             val intent = Intent(this, MissionsActivity::class.java)
             missionItems.sortBy { it.deadline }
+
+            val reminders: MutableMap<String, Any> = HashMap()
+            reminders["user"] = firebaseUser
+            reminders["reminder"] = addedMission.toString()
+            db.collection("reminders").add(reminders)
+
             startActivity(intent)
             finish()
 

@@ -42,6 +42,7 @@ class EditMissionFragment : DialogFragment(), DatePickerDialog.OnDateSetListener
 
         rootview.findViewById<EditText>(R.id.editMissionNameTextField).setText(missionItems[pos].missionName)
         val deadlineDateTime = missionItems[pos].deadline
+        localDateTime = deadlineDateTime
 
         var timeColumn = ":"
         if (deadlineDateTime.minute < 10){
@@ -66,6 +67,8 @@ class EditMissionFragment : DialogFragment(), DatePickerDialog.OnDateSetListener
             missionItems[pos].deadline = localDateTime
             missionItems[pos].missionName = rootview.findViewById<EditText>(R.id.editMissionNameTextField).text.toString()
             missionItems[pos].isReminder = rootview.findViewById<CheckBox>(R.id.editNotificationCheckBox).isChecked
+
+            
 
             missionItems.sortBy { it.deadline }
             val listView = this.activity?.findViewById<ListView>(R.id.missionsListView)

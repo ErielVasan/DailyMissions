@@ -13,18 +13,21 @@ import android.widget.*
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
+import com.google.firebase.auth.FirebaseAuth
 import java.time.LocalDateTime
 
 @RequiresApi(Build.VERSION_CODES.O)
-var missionItems = arrayListOf<MissionItem>()
+
 var pos: Int = -1
 
 class MissionsFragment : Fragment() {
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+
         super.onViewCreated(view, savedInstanceState)
         val listView = view.findViewById<ListView>(R.id.missionsListView)
-            val appContext = this.activity
+        val appContext = this.activity
 
         listView.adapter = appContext?.let { MissionsAdapter(it) }
 
@@ -49,7 +52,6 @@ class MissionsFragment : Fragment() {
 
         private val mContext: Context = context
 
-
         @RequiresApi(Build.VERSION_CODES.O)
         override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
             val layoutInflater = LayoutInflater.from(mContext)
@@ -64,7 +66,6 @@ class MissionsFragment : Fragment() {
             if (deadlineDateTime.minute < 10){
                 timeColumn = ":0"
             }
-
             deadline.text = deadlineDateTime.hour.toString() + timeColumn +
                     deadlineDateTime.minute.toString() + "  " +
                     deadlineDateTime.dayOfMonth.toString() + "/" +
