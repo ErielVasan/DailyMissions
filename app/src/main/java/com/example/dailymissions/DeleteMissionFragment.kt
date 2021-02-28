@@ -23,6 +23,9 @@ open class DeleteMissionFragment : DialogFragment()  {
         }
 
         rootview.findViewById<Button>(R.id.abandonButton).setOnClickListener {
+
+            db.collection("reminders").document(missionItems[pos].id).delete()
+
             missionItems.removeAt(pos)
             val listView = this.activity?.findViewById<ListView>(R.id.missionsListView)
             (listView?.adapter as MissionsFragment.MissionsAdapter).notifyDataSetChanged()
