@@ -1,5 +1,6 @@
 package com.example.dailymissions
 
+import android.app.Activity
 import android.content.Context
 import android.content.DialogInterface
 import android.graphics.Color
@@ -15,6 +16,7 @@ import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import com.google.firebase.auth.FirebaseAuth
 import java.time.LocalDateTime
+import java.util.*
 
 @RequiresApi(Build.VERSION_CODES.O)
 
@@ -27,7 +29,7 @@ class MissionsFragment : Fragment() {
 
         super.onViewCreated(view, savedInstanceState)
         val listView = view.findViewById<ListView>(R.id.missionsListView)
-        val appContext = this.activity
+        val appContext = this.context
 
         listView.adapter = appContext?.let { MissionsAdapter(it) }
 
@@ -56,11 +58,14 @@ class MissionsFragment : Fragment() {
         override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
             val layoutInflater = LayoutInflater.from(mContext)
             val missionItem = layoutInflater.inflate(R.layout.mission_item, parent, false)
+            val emptyView = View(mContext)
 
-            var missionTitle = missionItem.findViewById<TextView>(R.id.missionTitleTextView)
-            var deadline = missionItem.findViewById<TextView>(R.id.deadlineTextView)
+            val missionTitle = missionItem.findViewById<TextView>(R.id.missionTitleTextView)
+            val deadline = missionItem.findViewById<TextView>(R.id.deadlineTextView)
             missionTitle.text = missionItems[position].missionName
-            var deadlineDateTime =  missionItems[position].deadline
+            val deadlineDateTime =  missionItems[position].deadline
+
+            val localDateTime = LocalDateTime.now()
 
             var timeColumn = ":"
             if (deadlineDateTime.minute < 10){
@@ -74,8 +79,17 @@ class MissionsFragment : Fragment() {
             if (!missionItems[position].isReminder) {
                 missionItem.setBackgroundColor(Color.parseColor("#FFFFFF"))
             }
-
-            return missionItem
+            // If the text on the Button is Show All, the elements should be hidden, otherwise they are shown.
+            if ((mContext as MissionsActivity).findViewById<Button>(R.id.showAllButton).text == "Show All"){
+                if (deadlineDateTime.isAfter(localDateTime)){
+                    return missionItem
+                }
+                else {
+                    return emptyView
+                }
+            }else{
+                return missionItem
+            }
 
         }
 

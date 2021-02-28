@@ -67,6 +67,15 @@ class MissionsActivity : AppCompatActivity() {
             startActivity(intent)
             finish()
         }
+
+        findViewById<Button>(R.id.showAllButton).setOnClickListener {
+            when(findViewById<Button>(R.id.showAllButton).text){
+                "Show All" -> findViewById<Button>(R.id.showAllButton).text = "Hide"
+                "Hide" -> findViewById<Button>(R.id.showAllButton).text = "Show All"
+            }
+            val listView = findViewById<ListView>(R.id.missionsListView)
+            (listView?.adapter as MissionsFragment.MissionsAdapter).notifyDataSetChanged()
+        }
     }
     override fun onBackPressed() {
         val intent = Intent()
