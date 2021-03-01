@@ -80,15 +80,14 @@ class MissionsFragment : Fragment() {
                 missionItem.setBackgroundColor(Color.parseColor("#FFFFFF"))
             }
             // If the text on the Button is Show All, the elements should be hidden, otherwise they are shown.
-            if ((mContext as MissionsActivity).findViewById<Button>(R.id.showAllButton).text == "Show All"){
-                if (deadlineDateTime.isAfter(localDateTime)){
-                    return missionItem
-                }
-                else {
-                    return emptyView
+            return if ((mContext as MissionsActivity).findViewById<Button>(R.id.showAllButton).text == "Show All"){
+                if (deadlineDateTime.isBefore(localDateTime)){
+                    missionItem
+                } else {
+                    emptyView
                 }
             }else{
-                return missionItem
+                missionItem
             }
 
         }
